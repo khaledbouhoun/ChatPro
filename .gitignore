@@ -1,0 +1,144 @@
+# ============================================================
+# SECURITY - SENSITIVE FILES (CRITICAL - NEVER COMMIT)
+# ============================================================
+
+# Firebase Configuration (contains API keys, credentials, project IDs)
+google-services.json
+firebase.json
+**/google-services.json
+**/*firebase*.json
+
+# Environment Variables and Secrets
+.env
+.env.local
+.env.*.local
+.env.*.private
+.env.prod
+.env.dev
+.env.test
+
+# API Keys and Credentials
+*.key
+*.pem
+*.p8
+*.p12
+*.pfx
+serviceAccountKey.json
+**/service-account*.json
+private_key*.json
+
+# AWS and Cloud credentials
+.aws/
+aws_credentials.txt
+**/credentials.json
+
+# Local development config (may contain DB passwords)
+local.properties
+local.*.properties
+
+# IDE and Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+.atom/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+*.class
+
+# VS Code specific
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+
+# ============================================================
+# BUILD AND RUNTIME
+# ============================================================
+
+# Flutter/Dart/Pub related
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+doc/api/
+.packages
+pubspec.lock
+
+# Android specific
+/android/app/debug
+/android/app/profile
+/android/app/release
+/android/local.properties
+/android/.gradle/
+/android/app/gradle-debug.log
+/android/gradlew.bat
+/android/gradlew
+
+# iOS specific
+/ios/Flutter/.last_build_id
+/ios/Flutter/Flutter.podspec
+/ios/Pods/
+/ios/Podfile.lock
+/ios/.symlinks/
+/ios/Flutter/Flutter.framework
+
+# Web
+/web/flutter_service_worker.js
+
+# Generated files
+.dart_tool/
+.gradle/
+**/generated/
+**/intermediates/
+**/.generated/
+
+# Build directories
+build/
+dist/
+.dart_tool/
+.gradle/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# ============================================================
+# MISCELLANEOUS
+# ============================================================
+
+# Logs
+*.log
+*.logs
+
+# Version control
+.git/
+.hg/
+.svn/
+
+# History and backups
+.history
+.buildlog/
+migrate_working_dir/
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Misc
+.swiftpm/
+.build/

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- Internal app files -->
+    <files-path name="files" path="."/>
+
+    <!-- External storage -->
+    <external-path name="external" path="."/>
+
+    <!-- External files dir -->
+    <external-files-path name="external_files" path="."/>
+
+    <!-- Cache dir (used by image_picker for temp photos) -->
+    <cache-path name="cache" path="."/>
+
+    <!-- External cache dir -->
+    <external-cache-path name="external_cache" path="."/>
+</paths>
