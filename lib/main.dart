@@ -11,6 +11,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'firebase_options.dart';
 import 'services/hive_service.dart';
 import 'services/auth_service.dart';
+import 'services/fcm_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +27,7 @@ void main() async {
   await Get.putAsync(() => HiveService().init());
   await Get.putAsync(() => AuthService().init());
   await Get.putAsync(() => MessageQueueService().init());
+  await Get.putAsync(() => FCMService().init());
 
   runApp(const MyApp());
 }
@@ -72,6 +74,8 @@ class _RootDeciderState extends State<_RootDecider> {
           Get.offAllNamed('/login');
         } else {
           Get.offAllNamed('/home');
+          // Check if launching via push notification deep link
+          Get.find<FCMService>().checkLaunchUrlArguments();
         }
       } catch (e) {
         // If HiveService isn't available for some reason, fall back to login.

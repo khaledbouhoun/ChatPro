@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'hive_service.dart';
+import 'fcm_service.dart';
 import '../models/user_model.dart';
 
 class AuthService extends GetxService {
@@ -89,6 +90,9 @@ class AuthService extends GetxService {
       // Sync to Firestore in background
       _syncUserToFirestoreBackground(userModel);
 
+      // Register device FCM token in background
+      Get.find<FCMService>().registerFCM(uid);
+
       isLoggedIn.value = true;
       return true;
     } on FirebaseAuthException catch (e) {
@@ -120,6 +124,10 @@ class AuthService extends GetxService {
 
       await _hiveService.saveUser(userModel);
       _syncUserToFirestoreBackground(userModel);
+      
+      // Register device FCM token in background
+      Get.find<FCMService>().registerFCM(credential.user!.uid);
+
       isLoggedIn.value = true;
       return true;
     } on FirebaseAuthException catch (e) {
@@ -166,6 +174,14 @@ class AuthService extends GetxService {
   // ─── Logout ────────────────────────────────────────────────────────────────
 
   void logout() async {
+    final uid = _auth.currentUser?.uid;
+    if (uid != null) {
+      try {
+        await Get.find<FCMService>().unregisterCurrentToken(uid);
+      } catch (e) {
+        debugPrint('[Auth] FCM Token cleanup error: $e');
+      }
+    }
     await setOnlineStatus(false);
     await _auth.signOut();
     await _hiveService.clearAuthData();
